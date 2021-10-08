@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+import { Router } from "./Router"
+import { ContextProvider } from "./context"
 
 function App() {
+  const theme = extendTheme({
+    fonts: {
+      body: "Raleway, sans-serif",
+      heading: "Raleway, sans-serif",
+    },
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ContextProvider>
+      <ChakraProvider theme={theme}>
+        <Router />
+      </ChakraProvider>
+    </ContextProvider>
+  )
 }
 
-export default App;
+export default App
